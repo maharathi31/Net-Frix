@@ -7,9 +7,9 @@ function App() {
   const classes=useStyles();
   return (
     <div className="App">
-    <Navbar />
+    <Navbar/>
     <Routes>
-      <Route path="/" element={<Movies/>}></Route>
+      <Route path= "/movies" element={<Movies/>}/>
       <Route path="/actors/:id" element={<Actors/>}></Route>
       <Route path="/movie/:id" element={<MovieInformation/>}></Route>
       <Route path="/profile/:id" element={<Profile/>}></Route>
