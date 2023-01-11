@@ -6,6 +6,7 @@ nav:{
     justifyContent:"space-around",
     backgroundColor:"light-blue",
     height:"5rem",
+   
     
 },
 search:{
@@ -20,5 +21,5 @@ nav1:{
 },
 navi:{
     marginBottom:"7rem"
-}
+},
 }))

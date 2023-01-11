@@ -67,7 +67,7 @@ const Navbar = () => {
   return (<div className={classes.navi}>
     <AppBar position="fixed" className={classes.bar}>
       <Toolbar className={classes.nav}>
-       <Sidebar/>
+       <Sidebar className={classes.side}/>
       <div className={classes.nav1}>
         {!isMobile && <theme className="palette"></theme> === "dark"?<Brightness4/>:<Brightness7/>}
         {!isMobile &&
