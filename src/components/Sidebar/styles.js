@@ -60,5 +60,9 @@ export default makeStyles((theme)=>({
             marginLeft:"1rem"
     
         },
+        
       },
+      logo:{
+        width:"30px"
+    }
 }))

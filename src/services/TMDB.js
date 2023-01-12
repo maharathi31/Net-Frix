@@ -7,8 +7,12 @@ export const tmdbApi=createApi({
     baseQuery:fetchBaseQuery({baseUrl:"https://api.themoviedb.org/3"}),
     endpoints:(builder)=>({
      getMovies:builder.query({
-        query:()=>`movie/popular?page=${page}&api_key=${tmdbkey}`
-     })
+        query:()=>`movie/popular?api_key=${tmdbkey}`
+     }),
+     getGenres:builder.query({
+        query:()=>`genre/movie/list?page=${page}&api_key=${tmdbkey}`
+     }),
     })
 })
 export const { useGetMoviesQuery}=tmdbApi;
+export const { useGetGenresQuery}=tmdbApi;

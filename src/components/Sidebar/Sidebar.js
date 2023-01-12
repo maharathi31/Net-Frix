@@ -20,6 +20,9 @@ import Typography from '@mui/material/Typography';
 import { ClassNames } from '@emotion/react';
 import { useTheme } from '@mui/styles';
 import useStyles from "./styles"
+import { useGetGenresQuery } from '../../services/TMDB';
+import genreIcons from "../../genres"
+import { CircularProgress } from '@material-ui/core';
 const drawerWidth = 230;
 const redLogo = 'https://fontmeme.com/permalink/210930/8531c658a743debe1e1aa1a2fc82006e.png';
 const blueLogo = 'https://fontmeme.com/permalink/210930/6854ae5c7f76597cf8680e48a2c8a50a.png';
@@ -32,6 +35,7 @@ function ResponsiveDrawer(props) {
     setMobileOpen(!mobileOpen);
   };
   const theme=useTheme()
+  const {data,isFetching}=useGetGenresQuery()
   const drawer = (
     <div>
       <Toolbar />
@@ -44,7 +48,7 @@ function ResponsiveDrawer(props) {
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              <img src={genreIcons[text.toLowerCase()]} className={classes.logo}></img>
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItemButton>
@@ -55,12 +59,15 @@ function ResponsiveDrawer(props) {
       <Divider />
       <p className={classes.categories2}>Genres</p>
       <List>
+        {isFetching?( <Box display="flex" justifyContent="center">
+       <CircularProgress size="4rem"/>
+      </Box>):console.log(data.genres)}
         {genres.map((text,index) => (
             <NavLink key={index} to={`/`+`${index}`} className={classes.links}>
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              <img src={genreIcons[text.toLowerCase()]} className={classes.logo}></img>
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItemButton>
