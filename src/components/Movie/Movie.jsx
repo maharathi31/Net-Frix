@@ -27,6 +27,9 @@ const useStyles = makeStyles((theme)=>({
     t:{
       marginBottom:"10px",
       marginTop:"-1px"
+    },
+    con:{
+      paddingRight:"2rem"
     }
    }));
 const Movie = ({movie,i}) => {

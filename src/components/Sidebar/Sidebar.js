@@ -64,13 +64,12 @@ function ResponsiveDrawer(props) {
       <Divider />
       <p className={classes.categories2}>Genres</p>
       <List>
-        {isFetching?( <Box display="flex" justifyContent="center">
-       <CircularProgress size="4rem"/>
-      </Box>):console.log(data.genres)}
         {genres.map((text,index) => (
             <NavLink key={index} to="/movies" className={classes.links}>
           <ListItem key={text} disablePadding onClick={()=>{
-            dispatch(selectGenreOrCategory(index))
+           const genres1=(data.genres)
+           console.log(genres1)
+            dispatch(selectGenreOrCategory(genres1[index].id))
           }}>
             <ListItemButton>
               <ListItemIcon>
