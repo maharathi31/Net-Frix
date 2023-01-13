@@ -23,6 +23,8 @@ import useStyles from "./styles"
 import { useGetGenresQuery } from '../../services/TMDB';
 import genreIcons from "../../genres"
 import { CircularProgress } from '@material-ui/core';
+import { useDispatch,useSelector } from 'react-redux';
+import { selectGenreOrCategory } from '../../features/currentGenreOrCategory';
 const drawerWidth = 230;
 const redLogo = 'https://fontmeme.com/permalink/210930/8531c658a743debe1e1aa1a2fc82006e.png';
 const blueLogo = 'https://fontmeme.com/permalink/210930/6854ae5c7f76597cf8680e48a2c8a50a.png';
@@ -34,6 +36,7 @@ function ResponsiveDrawer(props) {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+  const dispatch=useDispatch()
   const theme=useTheme()
   const {data,isFetching}=useGetGenresQuery()
   const drawer = (
@@ -43,14 +46,16 @@ function ResponsiveDrawer(props) {
       <Divider />
       <p className={classes.categories}>Categories</p>
       <List>
-        {['Popular', 'Top Rated', 'Upcoming'].map((text,index) => (
-            <NavLink key={index} to={`/`+`${index}`} className={classes.links}>
-          <ListItem key={text} disablePadding>
+        {['Popular', 'Top Rated', 'Upcoming'].map((label,value) => (
+            <NavLink key={value} to="/movies" className={classes.links}>
+          <ListItem key={label} disablePadding onClick={()=>{
+            dispatch(selectGenreOrCategory(label))
+          }}>
             <ListItemButton>
               <ListItemIcon>
-              <img src={genreIcons[text.toLowerCase()]} className={classes.logo}></img>
+              <img src={genreIcons[label.toLowerCase()]} className={classes.logo}></img>
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={label} />
             </ListItemButton>
           </ListItem>
           </NavLink>
@@ -63,8 +68,10 @@ function ResponsiveDrawer(props) {
        <CircularProgress size="4rem"/>
       </Box>):console.log(data.genres)}
         {genres.map((text,index) => (
-            <NavLink key={index} to={`/`+`${index}`} className={classes.links}>
-          <ListItem key={text} disablePadding>
+            <NavLink key={index} to="/movies" className={classes.links}>
+          <ListItem key={text} disablePadding onClick={()=>{
+            dispatch(selectGenreOrCategory(index))
+          }}>
             <ListItemButton>
               <ListItemIcon>
               <img src={genreIcons[text.toLowerCase()]} className={classes.logo}></img>
@@ -128,10 +135,7 @@ function ResponsiveDrawer(props) {
 }
 
 ResponsiveDrawer.propTypes = {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
+  
   window: PropTypes.func,
 };
 
