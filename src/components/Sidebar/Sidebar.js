@@ -25,6 +25,7 @@ import genreIcons from "../../genres"
 import { CircularProgress } from '@material-ui/core';
 import { useDispatch,useSelector } from 'react-redux';
 import { selectGenreOrCategory } from '../../features/currentGenreOrCategory';
+import logo from "../../genres/Net-Frix.png"
 const drawerWidth = 230;
 const redLogo = 'https://fontmeme.com/permalink/210930/8531c658a743debe1e1aa1a2fc82006e.png';
 const blueLogo = 'https://fontmeme.com/permalink/210930/6854ae5c7f76597cf8680e48a2c8a50a.png';
@@ -42,7 +43,7 @@ function ResponsiveDrawer(props) {
   const drawer = (
     <div>
       <Toolbar />
-      <img src= {<theme className="palette"></theme> === "dark"?blueLogo:redLogo} className={classes.image}></img>
+      <img src= {<theme className="palette"></theme> === "dark"?blueLogo:logo} className={classes.image}></img>
       <Divider />
       <p className={classes.categories}>Categories</p>
       <List>
